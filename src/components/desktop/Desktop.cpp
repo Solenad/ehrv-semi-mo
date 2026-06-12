@@ -62,7 +62,8 @@ void Desktop::draw() {
         ImGuiWindowFlags_NoCollapse |
         ImGuiWindowFlags_NoBringToFrontOnFocus |
         ImGuiWindowFlags_NoScrollbar |
-        ImGuiWindowFlags_NoScrollWithMouse);
+        ImGuiWindowFlags_NoScrollWithMouse |
+        ImGuiWindowFlags_NoMouseInputs);
 
     drawWallpaper();
     drawClock();
@@ -104,11 +105,11 @@ void Desktop::drawClock() {
 
     ImVec2 bgMin(
         displaySize.x - textSize.x - padding * 2,
-        displaySize.y - textSize.y - padding * 2
+        padding
     );
     ImVec2 bgMax(
         displaySize.x - padding,
-        displaySize.y - padding
+        textSize.y + padding * 2
     );
 
     ImDrawList* drawList = ImGui::GetWindowDrawList();
@@ -116,7 +117,7 @@ void Desktop::drawClock() {
 
     ImVec2 textPos(
         displaySize.x - textSize.x - padding * 1.5f,
-        displaySize.y - textSize.y - padding * 1.5f
+        padding * 1.5f
     );
     drawList->AddText(textPos, IM_COL32(255, 255, 255, 255), buffer);
 }
